@@ -1,6 +1,12 @@
+/*#########################################################
+This program created by Hashim Khubrani twitter: @HJKCS2002
+##########################################################*/
 package authenticationcliapp;
 import java.util.Scanner;
 public class UserNameAuthentication {
+        
+        //### Varibles and Arrays Area ###.
+        
         private String username;
         private boolean conditionLength = false;
         private boolean conditionisUppercase = false;
@@ -9,6 +15,7 @@ public class UserNameAuthentication {
         private char Symbols[] = {'@', '-', '#', '_'};        
         Scanner reader = new Scanner(System.in);
         
+        //### Constractor ###.
         public UserNameAuthentication(String initUserName){
               username = initUserName;
         }
@@ -46,8 +53,10 @@ public class UserNameAuthentication {
                        conditionisLowercase = true;
                    }             
         }
-      }        
+      }     
+        //### This is Main Methoed in Class ###.
         public void setUserName(String username){
+            
             usernameLengthCheck(username);
             usernameisUppercaseCheck(username);
             usernameisLowercaseCheck(username);

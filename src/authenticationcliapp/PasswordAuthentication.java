@@ -1,6 +1,11 @@
+/*#########################################################
+This program created by Hashim Khubrani twitter: @HJKCS2002
+##########################################################*/
 package authenticationcliapp;
 import java.util.Scanner;
 public class PasswordAuthentication {
+        
+        //### Varibles and Arrays Area ###.
         
         private String password;
         private boolean conditionLength = false;
@@ -10,6 +15,7 @@ public class PasswordAuthentication {
         private char Symbols[] = {'@', '-', '#', '_'};
         Scanner reader = new Scanner(System.in);
         
+        //### Constractor ###.
         public PasswordAuthentication(String initPassword){
             password = initPassword;
         }
@@ -49,12 +55,14 @@ public class PasswordAuthentication {
             
         }
       }
+        //### This is Main Method in Class ###.
         public void setPassword(String password){
            
             passwordLengthCheck(password);
             passwordisUppercaseCheck(password);
             passwordisLowercaseCheck(password);
             passwordSymbolCheck(password);
+            
             
             if(conditionLength && conditionisLowercase && conditionisUppercase && conditioniSymbols )
                     this.password = password;
