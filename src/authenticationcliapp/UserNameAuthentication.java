@@ -1,6 +1,7 @@
 /*#########################################################
 This program created by Hashim Khubrani twitter: @HJKCS2002
 ##########################################################*/
+
 package authenticationcliapp;
 import java.util.Scanner;
 public class UserNameAuthentication {
@@ -12,7 +13,8 @@ public class UserNameAuthentication {
         private boolean conditionisUppercase = false;
         private boolean conditionisLowercase = false;
         private boolean conditioniSymbols = false;
-        private char Symbols[] = {'@', '-', '#', '_'};        
+        private char Symbols[] = {'@', '-', '#', '_'}; 
+        private boolean conditionIsDigit = false;
         Scanner reader = new Scanner(System.in);
         
         //### Constractor ###.
@@ -20,6 +22,12 @@ public class UserNameAuthentication {
               username = initUserName;
         }
         
+        public void usernameIsDigitCheck(String username){
+            for(char temp : username.toCharArray()){
+                if(Character.isDigit(temp))
+                    conditionIsDigit = true;
+            }
+        }
         public void userSymbolCheck(String username){
             for(int indexArray = 0; indexArray < Symbols.length; indexArray++){
                 for(char temp: username.toCharArray()){
@@ -61,8 +69,9 @@ public class UserNameAuthentication {
             usernameisUppercaseCheck(username);
             usernameisLowercaseCheck(username);
             userSymbolCheck(username);
+            usernameIsDigitCheck(username);
             
-            if(conditionLength && conditionisLowercase && conditionisUppercase && conditioniSymbols )
+            if(conditionLength && conditionisLowercase && conditionisUppercase && conditioniSymbols && conditionIsDigit )
                     this.username = username;
             else{
                 if(conditionLength == false){
@@ -94,12 +103,21 @@ public class UserNameAuthentication {
                 
                 if(conditioniSymbols == false){
                     System.out.println("The input  it isn't correct...\nThe "
-                            + "Username there isn't a Symbole..Try agian");
+                            + "Username there isn't a Symbol..Try agian");
                     System.out.print("Enter Username: ");
                     username = reader.next();
                     userSymbolCheck(username);
                     setUserName(username);
-                }                 
+                } 
+                
+                if(conditionIsDigit == false){
+                    System.out.println("The input  it isn't correct...\nThe "
+                            + "username there isn't a Number..Try agian");
+                    System.out.print("Enter Username: ");
+                    username = reader.next();
+                    usernameIsDigitCheck(username);
+                    setUserName(username);                    
+                }
             }        
         
         }

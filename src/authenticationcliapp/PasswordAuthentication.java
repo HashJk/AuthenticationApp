@@ -1,6 +1,7 @@
 /*#########################################################
 This program created by Hashim Khubrani twitter: @HJKCS2002
 ##########################################################*/
+
 package authenticationcliapp;
 import java.util.Scanner;
 public class PasswordAuthentication {
@@ -13,6 +14,7 @@ public class PasswordAuthentication {
         private boolean conditionisLowercase = false;
         private boolean conditioniSymbols = false;
         private char Symbols[] = {'@', '-', '#', '_'};
+        private boolean conditionisDigit = false;
         Scanner reader = new Scanner(System.in);
         
         //### Constractor ###.
@@ -20,6 +22,12 @@ public class PasswordAuthentication {
             password = initPassword;
         }
         
+        public void passwordIsDigitCheck(String passowrd){
+            for(char temp : passowrd.toCharArray()){
+                if(Character.isDigit(temp))
+                    conditionisDigit = true;
+            }
+        }
         public void passwordSymbolCheck(String password){
             for(int indexArray = 0; indexArray < Symbols.length; indexArray++){
                 for(char temp: password.toCharArray()){
@@ -62,9 +70,9 @@ public class PasswordAuthentication {
             passwordisUppercaseCheck(password);
             passwordisLowercaseCheck(password);
             passwordSymbolCheck(password);
+            passwordIsDigitCheck(password);
             
-            
-            if(conditionLength && conditionisLowercase && conditionisUppercase && conditioniSymbols )
+            if(conditionLength && conditionisLowercase && conditionisUppercase && conditioniSymbols && conditionisDigit )
                     this.password = password;
             else{
                 if(conditionLength == false){
@@ -96,12 +104,21 @@ public class PasswordAuthentication {
                 
                 if(conditioniSymbols == false){
                     System.out.println("The input  it isn't correct...\nThe "
-                            + "password there isn't a Symbole..Try agian");
+                            + "password there isn't a Symbol..Try agian");
                     System.out.print("Enter Password: ");
                     password = reader.next();
                     passwordSymbolCheck(password);
                     setPassword(password);
-                }            
+                } 
+                
+                if(conditionisDigit == false){
+                    System.out.println("The input  it isn't correct...\nThe "
+                            + "password there isn't a Number..Try agian");
+                    System.out.print("Enter Password: ");
+                    password = reader.next();
+                    passwordIsDigitCheck(password);
+                    setPassword(password);
+                }
             
             }
         }
